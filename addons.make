@@ -1,5 +1,6 @@
 ofxArtnet
 ofxDmx
+ofxDropdown
 ofxGui
 ofxNetwork
 ofxOsc

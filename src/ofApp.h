@@ -5,6 +5,9 @@
 #include "ofxGui.h"
 #include "ofxOsc.h"
 #include "ofxNetwork.h"
+#include "ofxDmx.h"
+#include "ofxDropdown.h"
+#include "ofSerial.h"
 
 class ofApp : public ofBaseApp{
 
@@ -40,13 +43,21 @@ class ofApp : public ofBaseApp{
     ofParameter<string> targetArtnet;
     ofParameter<unsigned short> portArtnet;
     
+    ofSerial serial;
+    unique_ptr<ofxDropdown> serialDropdown;
+    
     ofParameter<bool> useDMX;
+    ofParameter<string> dmxPort;
+    string connectedDmxPort;
+    string invalidDmxPort;
+    
     ofParameter<bool> use3DView;
     ofParameter<string> port3DView;
-    ofxUDPManager udp3DView;
     
     ofxOscReceiver oscReceiver;
+    ofxUDPManager udp3DView;
     ofxArtnetSender artnet;
+    ofxDmx dmx;
     
     const std::string HEAD_3DVIEW = "DMX|";
 

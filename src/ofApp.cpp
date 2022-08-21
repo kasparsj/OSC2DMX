@@ -19,9 +19,18 @@ void ofApp::setup(){
     groupArtnet.add(portArtnet.set("port", 6465));
     gui.add(groupArtnet);
     
-    groupDMX.setName("DMX");
+    dmxPort.setName("port");
+    serialDropdown =  make_unique<ofxDropdown>(dmxPort);
+    vector<ofSerialDeviceInfo> devices = serial.getDeviceList();
+    for(int i = 0; i < devices.size(); i++){
+        serialDropdown->add(devices[i].getDevicePath());
+    }
+    
+    groupDMX.setName("Enttec DMX USB Pro");
     groupDMX.add(useDMX.set("enabled", false));
     gui.add(groupDMX);
+    ofxBaseGui* group = gui.getControl(gui.getNumControls()-1);
+    dynamic_cast<ofxGuiGroup*>(group)->add(serialDropdown.get());
     
     group3DView.setName("SL3DView");
     group3DView.add(use3DView.set("enabled", false));
@@ -37,6 +46,17 @@ void ofApp::setup(){
 void ofApp::update(){
     if (oscReceiver.getPort() != oscPort) {
         oscReceiver.setup(oscPort);
+    }
+    
+    if (connectedDmxPort != dmxPort.get() && invalidDmxPort != dmxPort.get()) {
+        if (dmx.connect(dmxPort.get())) {
+            connectedDmxPort = dmxPort.get();
+            dmxPort.setName("port - connected");
+        }
+        else {
+            invalidDmxPort = dmxPort.get();
+            dmxPort.setName("port - NOT connected");
+        }
     }
     
     int myPort = ofToInt(port3DView.get());
@@ -58,14 +78,15 @@ void ofApp::update(){
 
 void ofApp::forwardData(const ofBuffer &data) {
     if (useArtnet) {
-        unsigned char* pixels = const_cast<unsigned char*>(reinterpret_cast<const unsigned char*>(data.getData()));
+        unsigned char* udata = const_cast<unsigned char*>(reinterpret_cast<const unsigned char*>(data.getData()));
         ofPixels pix;
-        pix.setFromPixels(pixels, data.size(), 1, 1);
+        pix.setFromPixels(udata, data.size(), 1, 1);
         artnet.sendArtnet(pix);
     }
     
-    if (useDMX) {
-        // todo: forward to serial
+    if (useDMX && dmx.isConnected()) {
+        unsigned char* udata = const_cast<unsigned char*>(reinterpret_cast<const unsigned char*>(data.getData()));
+        dmx.setLevels(udata, data.size());
     }
     
     if (use3DView) {
