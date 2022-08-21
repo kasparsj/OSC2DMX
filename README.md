@@ -10,3 +10,6 @@ This is an openFramweworks based project.
 - start 3DView
 - run `lsof | grep 3DView` to get the UDP port number
 - enter port number in OSC2DMX
+
+## Todo
+- add sACN (streaming ACN) / E131 support using https://github.com/PlaymodesStudio/ofxE131Client
