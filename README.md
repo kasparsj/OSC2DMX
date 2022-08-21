@@ -1,7 +1,7 @@
 # OSC2DMX
 OSC to DMX forwarding with support for Enttec DMX USB Pro, Art-Net and simulator software.
 
-This is an application built using openFramweworks and addons.
+This is an application built on openFramweworks & addons (ofxArtnet, ofxDmx).
 
 ## Using 3DView simulator software
 
