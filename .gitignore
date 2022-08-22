@@ -2,3 +2,5 @@ OSC2DMX.xcodeproj
 Project.xcconfig
 bin/OSC2DMXDebug.app
 settings.xml
+releases
+OSC2DMX.app
