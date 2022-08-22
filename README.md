@@ -5,9 +5,7 @@ This is an application built with openFramweworks.
 
 ## Platforms
 
-Currently only MacOs binaries are provided.
-
-Compile for other platforms with openFrameworks version > 0.11 and additional addons: ofxArtnet, ofxDmx, ofxDropdown.
+Currently only MacOs binaries are provided, but you can compile for other platforms with openFrameworks (>0.11) and additional addons: ofxArtnet, ofxDmx, ofxDropdown.
 
 ## Using 3DView simulator software
 
