@@ -1,7 +1,13 @@
 # OSC2DMX
 OSC to DMX bridge app with support for Serial (Enttec DMX USB Pro), Art-Net and simulator software.
 
-This is an application built on openFramweworks & addons (ofxArtnet, ofxDmx).
+This is an application built on openFramweworks & addons.
+
+## Compiling
+
+Currently only MacOs binaries are provided.
+
+Compile for other platforms with openFrameworks version > 0.11 and additional addons: ofxArtnet, ofxDmx, ofxDropdown.
 
 ## Using 3DView simulator software
 
