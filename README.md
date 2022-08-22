@@ -1,5 +1,5 @@
 # OSC2DMX
-OSC to DMX bridge app with support for Enttec DMX USB Pro, Art-Net and simulator software.
+OSC to DMX bridge app with support for Serial (Enttec DMX USB Pro), Art-Net and simulator software.
 
 This is an application built on openFramweworks & addons (ofxArtnet, ofxDmx).
 
