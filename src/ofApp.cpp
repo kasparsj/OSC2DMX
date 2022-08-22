@@ -49,7 +49,7 @@ void ofApp::update(){
     }
     
     if (connectedDmxPort != dmxPort.get() && invalidDmxPort != dmxPort.get()) {
-        if (dmx.connect(dmxPort.get())) {
+        if (dmx.connect(dmxPort.get(), 512)) {
             connectedDmxPort = dmxPort.get();
             dmxPort.setName("port - connected");
         }
@@ -86,7 +86,20 @@ void ofApp::forwardData(const ofBuffer &data) {
     
     if (useDMX && dmx.isConnected()) {
         unsigned char* udata = const_cast<unsigned char*>(reinterpret_cast<const unsigned char*>(data.getData()));
-        dmx.setLevels(udata, data.size());
+        // quickfix: add to ofxDmx.h
+//        void setLevels(unsigned char* value, int len) {
+//            levels.assign(value, value + len);
+//        }
+//        void setLevels(unsigned char* value) {
+//            setLevels(value, levels.size());
+//        }
+//        void setLevels2(unsigned char* value, int len) {
+//            levels2.assign(value, value + len);
+//        }
+//        void setLevels2(unsigned char* value) {
+//            setLevels2(value, levels2.size());
+//        }
+        dmx.setLevels(udata);
     }
     
     if (use3DView) {
