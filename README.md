@@ -12,7 +12,7 @@ Currently only MacOs binaries are provided, but you can compile for other platfo
 3DView is a lighting simulator included in the free theLighingController by SweetLight.
 
 - start 3DView
-- run `lsof | grep 3DView` to get the UDP port number
+- find 3DView listening port number (in Terminal run `lsof | grep 3DView` and look for UDP port number)
 - enter port number in OSC2DMX
 
 ## Todo
