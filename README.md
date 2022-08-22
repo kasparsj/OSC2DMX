@@ -3,7 +3,7 @@ OSC to DMX bridge app with support for Serial (Enttec DMX USB Pro), Art-Net and 
 
 This is an application built on openFramweworks & addons.
 
-## Compiling
+## Platforms
 
 Currently only MacOs binaries are provided.
 
