@@ -4,7 +4,7 @@
 void ofApp::setup(){
     ofSetFrameRate(60);
     
-    artnet.setup("127.0.0.1");
+    artnet.setup(artnetIp, artnetPort);
     
     gui.setup(); // most of the time you don't need a name
     
@@ -15,8 +15,8 @@ void ofApp::setup(){
     
     groupArtnet.setName("artnet");
     groupArtnet.add(useArtnet.set("enabled", false));
-    groupArtnet.add(targetArtnet.set("target", "127.0.0.1"));
-    groupArtnet.add(portArtnet.set("port", 6465));
+    groupArtnet.add(targetArtnet.set("target", artnetIp));
+    groupArtnet.add(portArtnet.set("port", artnetPort));
     gui.add(groupArtnet);
     
     dmxPort.setName("port");
@@ -46,6 +46,12 @@ void ofApp::setup(){
 void ofApp::update(){
     if (oscReceiver.getPort() != oscPort) {
         oscReceiver.setup(oscPort);
+    }
+    
+    if (artnetIp != targetArtnet.get() || artnetPort != portArtnet.get()) {
+        artnetIp = targetArtnet.get();
+        artnetPort = portArtnet.get();
+        artnet.setup(artnetIp, artnetPort);
     }
     
     if (connectedDmxPort != dmxPort.get() && invalidDmxPort != dmxPort.get()) {
