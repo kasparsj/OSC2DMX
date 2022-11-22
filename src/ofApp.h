@@ -58,7 +58,7 @@ class ofApp : public ofBaseApp{
     ofxUDPManager udp3DView;
     ofxArtnetSender artnet;
     string artnetIp = "127.0.0.1";
-    int artnetPort = 6465;
+    int artnetPort = 6454;
     ofxDmx dmx;
     
     const std::string HEAD_3DVIEW = "DMX|";
